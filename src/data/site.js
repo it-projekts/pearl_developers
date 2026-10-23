@@ -7,11 +7,11 @@
 export const company = {
   name: 'Pearl Developers',
   legal: 'Pearl Developers Limited',
-  tagline: 'Software, polished like pearls.',
-  email: 'hello@pearldevelopers.com', // TODO real email
-  phone: '+256 700 000 000', // TODO real phone
-  whatsapp: '256700000000', // TODO digits only, used for wa.me link
-  address: 'Kampala, Uganda', // TODO full office address
+  tagline: 'Building and innovating for the Pearl of Africa.',
+  email: 'pearldevelopers256@gmail.com', // TODO real email
+  phone: '+256 792875432', // TODO real phone
+  whatsapp: '256792875432', // TODO digits only, used for wa.me link
+  address: 'Kikandwa, Kakiri, Kampala, Uganda', // TODO full office address
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
   socials: [
     { label: 'LinkedIn', href: '#' }, // TODO
