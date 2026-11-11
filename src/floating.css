@@ -47,13 +47,14 @@
   .side-rail__tip { display: none; }
 }
 
-/* Footer wordmark: video visible only inside the letters, always fits the width */
-.footer__giant { overflow: visible; container-type: inline-size; margin: 70px 0 28px; color: inherit; letter-spacing: 0; }
-.fw { position: relative; isolation: isolate; mix-blend-mode: screen; }
-.fw__video { position: absolute; inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); object-fit: cover; }
-.fw__text {
-  position: relative; background: #000; color: #fff; mix-blend-mode: multiply;
-  font-family: var(--serif); font-weight: 500; white-space: nowrap; text-align: center;
-  font-size: calc(100cqw / 6.9); line-height: 1.12; letter-spacing: -0.03em; padding-bottom: .04em;
+/* Footer wordmark: full-width bold word, video visible only inside the letters */
+.footer__giant {
+  position: relative; overflow: visible; color: inherit; letter-spacing: 0; line-height: 0;
+  margin: 60px calc(50% - 50vw + 16px) 26px; font-size: 0;
 }
-.footer__giant .fw__text .italic { color: #fff; letter-spacing: -0.01em; }
+.fw__defs { position: absolute; width: 0; height: 0; }
+.fw__word { font-family: 'Archivo Black', 'Arial Black', sans-serif; }
+.fw__video {
+  display: block; width: 100%; aspect-ratio: 1000 / 70; object-fit: cover;
+  clip-path: url(#fw-clip); -webkit-clip-path: url(#fw-clip);
+}

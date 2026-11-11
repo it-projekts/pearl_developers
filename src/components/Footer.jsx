@@ -78,10 +78,14 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__giant" aria-hidden="true">
-          <div className="fw">
-            <VideoFill />
-            <div className="fw__text">pearl <span className="italic">developers</span></div>
-          </div>
+          <svg className="fw__defs" width="0" height="0" focusable="false">
+            <defs>
+              <clipPath id="fw-clip" clipPathUnits="objectBoundingBox">
+                <text transform="scale(0.001 0.014286)" x="0" y="66.5" fontSize="87.5" textLength="1000" lengthAdjust="spacingAndGlyphs" className="fw__word">PEARL DEVELOPERS</text>
+              </clipPath>
+            </defs>
+          </svg>
+          <VideoFill />
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} {company.legal}. All rights reserved.</span>
