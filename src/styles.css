@@ -462,10 +462,12 @@ input, textarea, select { font: inherit; color: inherit; }
 .member p { margin: 0; color: var(--muted); font-size: 15px; }
 
 /* ───────────── Big CTA ───────────── */
-.cta { position: relative; overflow: hidden; text-align: center; padding: clamp(100px, 16vw, 220px) 0; background: radial-gradient(80% 70% at 50% 100%, #d9c6e7 0%, #ecdfe0 50%, var(--bg) 100%); }
-.cta__big { font-size: clamp(64px, 15vw, 260px); line-height: .85; letter-spacing: -0.06em; font-weight: 500; margin: 20px 0 40px; }
-.cta__big .italic { letter-spacing: -0.03em; }
-.cta__orb { position: absolute; width: clamp(140px, 18vw, 280px); aspect-ratio: 1; border-radius: 50%; left: 50%; top: 50%;
+.cta { position: relative; overflow: hidden; text-align: center; padding: clamp(80px, 10vw, 140px) 0; background: radial-gradient(80% 70% at 50% 100%, #d9c6e7 0%, #ecdfe0 50%, var(--bg) 100%); }
+.cta__big { font-size: clamp(40px, 6.4vw, 96px); line-height: 1.02; letter-spacing: -0.03em; font-weight: 500; margin: 18px auto 20px; max-width: 12ch; text-wrap: balance; }
+.cta__big .italic { letter-spacing: -0.01em; }
+.cta__lead { max-width: 46ch; margin: 0 auto 34px; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; opacity: .75; }
+.cta__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta__orb { position: absolute; width: clamp(110px, 12vw, 190px); aspect-ratio: 1; border-radius: 50%; left: 78%; top: 30%;
   background: radial-gradient(circle at 32% 28%, #fff 0 8%, #f7e7ef 24%, #d8d7f3 50%, #b4c7e6 72%, #9d8bc4 100%);
   box-shadow: inset -20px -30px 60px rgba(110, 70, 140, .25), 0 50px 70px -40px rgba(110, 70, 120, .45); z-index: 0; opacity: .9; }
 .cta .container { position: relative; z-index: 1; }

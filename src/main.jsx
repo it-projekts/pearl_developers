@@ -7,6 +7,7 @@ import './dream.css'
 import './menu.css'
 import './dreamy.css'
 import './contact.css'
+import './hero.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

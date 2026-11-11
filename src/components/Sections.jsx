@@ -243,11 +243,11 @@ export function BigCTA() {
       <div className="container">
         <span className="eyebrow">Let’s collaborate</span>
         <h2 className="cta__big">
-          <SplitWords text="Let’s build" />
-          <br />
+          <SplitWords text="Let’s build" />{' '}
           <span className="italic"><SplitWords text="something rare" delay={0.15} /></span>
         </h2>
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <p className="cta__lead">Tell us what you have in mind. We’ll reply within one working day with next steps.</p>
+        <div className="cta__actions">
           <Link to="/contact" className="btn btn--dark">Start a project <Arrow dir="right" /></Link>
           <Link to="/work" className="btn btn--light">View our work <Arrow /></Link>
         </div>

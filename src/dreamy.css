@@ -27,7 +27,8 @@ body::before {
   font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em;
 }
 .h-display, .h-1 { line-height: 1.02; }
-.cta__big, .footer__giant { line-height: .95; letter-spacing: -0.03em; }
+.footer__giant { line-height: .95; letter-spacing: -0.03em; }
+.cta__big { line-height: 1.04; letter-spacing: -0.02em; }
 .h-display .italic, .h-1 .italic, .h-2 .italic, .cta__big .italic { letter-spacing: -0.01em; }
 
 /* Buttons and chips: rounded, teal brand */

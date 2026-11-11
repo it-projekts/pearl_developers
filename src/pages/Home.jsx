@@ -25,7 +25,59 @@ function hasWebGL() {
   }
 }
 
+const HERO_TAGS = ['Custom Software', 'Mobile Apps', 'Artificial Intelligence', 'SACCO Systems', 'School Management', 'ERP & CRM', 'E‑commerce', 'CCTV & Security', 'UI/UX Design']
+
 function Hero() {
+  const ready = useSplashDone()
+  const up = (d) => ({
+    initial: { opacity: 0, y: 18 },
+    animate: ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    transition: { duration: 0.8, delay: d, ease },
+  })
+
+  return (
+    <section className="ph">
+      <div className="ph__inner">
+        <motion.span className="ph__pill" {...up(0)}>
+          <i aria-hidden="true" /> Software · AI · Business systems, built in Uganda
+        </motion.span>
+
+        <motion.h1 className="ph__title" {...up(0.08)}>
+          <span className="ph__thin">A </span><b>Software &amp; AI Studio</b>{' '}
+          <br />
+          <span className="ph__thin">turning your ideas into </span><b>products that work</b>
+        </motion.h1>
+
+        <motion.p className="ph__sub" {...up(0.16)}>
+          We design and build custom software, mobile apps, AI tools and {solutionCount}+ ready‑to‑deploy
+          business systems for SACCOs, schools, hospitals, hotels and growing companies.
+        </motion.p>
+
+        <motion.div className="ph__ctas" {...up(0.24)}>
+          <Link to="/work" className="ph__btn ph__btn--solid">View our work <Arrow dir="right" /></Link>
+          <Link to="/contact" className="ph__btn ph__btn--ghost">Book a free call <Arrow dir="right" /></Link>
+        </motion.div>
+
+        <motion.div className="ph__trust" {...up(0.32)}>
+          <div className="ph__label"><span>Pearl Developers in numbers</span></div>
+          <div className="ph__stats">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <strong><Counter to={s.value} suffix={s.suffix} /></strong>
+                <small>{s.label}</small>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+      <Marquee items={HERO_TAGS} />
+    </section>
+  )
+}
+
+/* Previous 3D hero, kept for reference (not rendered) */
+// eslint-disable-next-line no-unused-vars
+function PearlHero() {
   const [webgl, setWebgl] = useState(false)
   useEffect(() => setWebgl(hasWebGL()), [])
   const { scrollY } = useScroll()
@@ -79,7 +131,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Marquee />
 
       {/* Statement + stats */}
       <section className="section">
@@ -90,14 +141,6 @@ export default function Home() {
             <span className="italic muted"><SplitWords text="Every great product begins as an idea." delay={0.2} /></span>{' '}
             <SplitWords text="We add the layers that make it rare." delay={0.4} />
           </h2>
-          <div className="stats">
-            {stats.map((s) => (
-              <div className="stat" key={s.label}>
-                <div className="stat__num"><Counter to={s.value} suffix={s.suffix} /></div>
-                <div className="stat__label">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
