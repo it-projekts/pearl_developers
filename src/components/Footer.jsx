@@ -1,6 +1,22 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from './ui.jsx'
 import { company, services, solutionGroups, industries } from '../data/site.js'
+
+/* Looping video that shows only through the letters of the wordmark */
+function VideoFill() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return v.pause()
+    // Only play while the footer is on screen
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()))
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+  return <video ref={ref} className="fw__video" src="/footer-wordmark.mp4" muted loop playsInline preload="metadata" />
+}
 
 export default function Footer() {
   const topSolutions = solutionGroups.flatMap((g) => g.items.slice(0, 2).map((i) => [i[0], g.key])).slice(0, 10)
@@ -62,7 +78,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__giant" aria-hidden="true">
-          pearl <span className="italic">developers</span>
+          <div className="fw">
+            <VideoFill />
+            <div className="fw__text">pearl <span className="italic">developers</span></div>
+          </div>
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} {company.legal}. All rights reserved.</span>
