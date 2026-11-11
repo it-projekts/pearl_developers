@@ -35,7 +35,7 @@ body::before {
 .btn--dark, .pill.is-active, .chip.is-on { background: var(--brand); border-color: var(--brand); color: #fff; }
 .btn--light { box-shadow: 0 14px 30px -14px rgba(23, 100, 110, .45); }
 .pill-row { background: rgba(255, 255, 255, .6); }
-.float-chat__btn { background: linear-gradient(135deg, #17a79a, #8f86d8); }
+
 .dream__switch[aria-checked='true'] { background: var(--brand); }
 
 /* Header */

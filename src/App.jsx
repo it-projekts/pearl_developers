@@ -6,7 +6,7 @@ import Header from './components/Header.jsx'
 import { RadialMenu } from './components/RadialMenu.jsx'
 import Splash from './components/Intro.jsx'
 import Footer from './components/Footer.jsx'
-import { Cursor, FloatChat, Grain } from './components/Extras.jsx'
+import { Cursor, FloatChat, Grain, SideRail } from './components/Extras.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Services, { ServiceDetail } from './pages/Services.jsx'
@@ -95,6 +95,7 @@ export default function App() {
           <Footer />
         </motion.main>
       </AnimatePresence>
+      <SideRail />
       <FloatChat />
       <Grain />
       <Cursor />
