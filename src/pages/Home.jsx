@@ -3,9 +3,18 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Arrow, Counter, Reveal, SplitWords, ease } from '../components/ui.jsx'
 import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
+import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
 import { stats, solutionCount } from '../data/site.js'
 
 const PearlScene = lazy(() => import('../components/PearlScene.jsx'))
+
+const LINES = [
+  'A software, AI & systems studio',
+  'Software,',
+  'polished.',
+  `Pearl Developers builds custom software, mobile apps, AI and ${solutionCount}+ business systems — layer by layer, until they shine.`,
+]
+const SPEEDS = [28, 75, 75, 11]
 
 function hasWebGL() {
   try {
@@ -22,6 +31,9 @@ function Hero() {
   const { scrollY } = useScroll()
   const yText = useTransform(scrollY, [0, 800], [0, 160])
   const fade = useTransform(scrollY, [0, 600], [1, 0])
+  const ready = useSplashDone()
+  const typed = useTypedLines(LINES, ready, SPEEDS)
+  const T = (i) => <Typed text={typed.shown[i]} full={LINES[i]} caret={ready && typed.active === i} />
 
   return (
     <section className="hero">
@@ -36,25 +48,19 @@ function Hero() {
       <div className="hero__veil" />
 
       <motion.div className="hero__content" style={{ y: yText, opacity: fade }}>
-        <motion.div className="hero__kicker" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease, delay: 0.3 }}>
-          A software, AI &amp; systems studio
-        </motion.div>
-        <h1 className="hero__title">
-          <span className="reveal-line">
-            <motion.span className="l1" initial={{ y: '110%' }} animate={{ y: 0 }} transition={{ duration: 1.3, ease, delay: 0.4 }}>
-              Software,
-            </motion.span>
-          </span>
-          <span className="reveal-line">
-            <motion.span className="l2" initial={{ y: '110%' }} animate={{ y: 0 }} transition={{ duration: 1.3, ease, delay: 0.55 }}>
-              polished.
-            </motion.span>
-          </span>
+        <div className="hero__kicker">{T(0)}</div>
+        <h1 className="hero__title" aria-label="Software, polished.">
+          <span className="reveal-line"><span className="l1">{T(1)}</span></span>
+          <span className="reveal-line"><span className="l2">{T(2)}</span></span>
         </h1>
-        <motion.p className="hero__sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }}>
-          Pearl Developers builds custom software, mobile apps, AI and {solutionCount}+ business systems — layer by layer, until they shine.
-        </motion.p>
-        <motion.div className="hero__ctas" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease, delay: 1.15 }}>
+        <p className="hero__sub">{T(3)}</p>
+        <motion.div
+          className="hero__ctas"
+          initial={{ opacity: 0, y: 20 }}
+          animate={typed.done ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.9, ease }}
+          style={{ pointerEvents: typed.done ? 'auto' : 'none' }}
+        >
           <Link to="/work" className="btn btn--light">View our work <Arrow /></Link>
           <Link to="/contact" className="btn btn--dark">Book a free call <Arrow dir="right" /></Link>
         </motion.div>
@@ -107,7 +113,7 @@ export default function Home() {
       </section>
 
       {/* Work */}
-      <section className="section" id="work" style={{ background: 'linear-gradient(180deg, var(--bg), #e9e1e4)' }}>
+      <section className="section" id="work" style={{ background: 'linear-gradient(180deg, var(--bg), #dfe9f4)' }}>
         <div className="container">
           <WorkGrid limit={6} />
           <div style={{ textAlign: 'center', marginTop: 60 }}>

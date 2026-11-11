@@ -81,14 +81,10 @@ export function Counter({ to, suffix = '' }) {
   )
 }
 
-export function Logo({ to = '/' }) {
+export function Logo({ to = '/', light = false }) {
   return (
     <Link to={to} className="logo" aria-label="Pearl Developers home">
-      <span className="logo__pearl" />
-      <span>
-        pearl <span className="serif">developers</span>
-        <sup>®</sup>
-      </span>
+      <img src={light ? '/logo-light.png' : '/logo.png'} alt="Pearl Developers" className="logo__img" />
     </Link>
   )
 }

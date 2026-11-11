@@ -555,3 +555,5 @@ input, textarea, select { font: inherit; color: inherit; }
   .grain { display: none; }
 }
 @media (min-width: 800px) { .work-grid { --stagger: 90px; } }
+.logo__img { height: 44px; width: auto; display: block; }
+@media (max-width: 760px) { .logo__img { height: 36px; } }

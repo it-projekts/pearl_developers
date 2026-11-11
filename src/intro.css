@@ -1,0 +1,21 @@
+/* Opening screen + typing effect */
+.splash { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: #0a0a0a; }
+.splash.is-out { opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.splash__inner { text-align: center; }
+.splash__word { display: flex; justify-content: center; padding-left: .3em; color: #c8a45c; font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(24px, 3.2vw, 48px); letter-spacing: .3em; }
+.splash__word span { opacity: 0; animation: splash-in .9s ease forwards; }
+.splash__line { display: block; width: 88px; height: 1px; margin: 26px auto 0; background: #c8a45c; transform: scaleX(0); animation: splash-line 1s .6s ease forwards; }
+@keyframes splash-in { from { opacity: 0; transform: translateY(6px); } to { opacity: .9; transform: none; } }
+@keyframes splash-line { to { transform: scaleX(1); } }
+
+.tw-rest { opacity: 0; }
+.tw-caret { display: inline-block; position: relative; width: 0; }
+.tw-caret::after { content: ''; position: absolute; left: .05em; top: .1em; width: 2px; height: .8em; background: currentColor; animation: tw-blink 1s steps(1) infinite; }
+@keyframes tw-blink { 50% { opacity: 0; } }
+
+body .hero { background: linear-gradient(180deg, #cdeeee 0%, #e6e3f7 52%, #d9c9f0 100%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash__word span, .splash__line { animation-duration: .01s; animation-delay: 0s !important; }
+  .tw-caret::after { animation: none; }
+}

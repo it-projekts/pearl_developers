@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Lenis from 'lenis'
-import Header, { SideMenu } from './components/Header.jsx'
+import Header from './components/Header.jsx'
+import { RadialMenu } from './components/RadialMenu.jsx'
+import Splash from './components/Intro.jsx'
 import Footer from './components/Footer.jsx'
 import { Cursor, FloatChat, Grain } from './components/Extras.jsx'
 import Home from './pages/Home.jsx'
@@ -68,8 +70,9 @@ export default function App() {
 
   return (
     <>
+      <Splash />
       <Header onOpenMenu={() => setMenuOpen(true)} />
-      <SideMenu open={menuOpen} onClose={closeMenu} />
+      <RadialMenu open={menuOpen} onClose={closeMenu} />
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
@@ -79,7 +82,7 @@ export default function App() {
           transition={{ duration: 0.45 }}
         >
           <Routes location={location}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home onOpenMenu={() => setMenuOpen(true)} />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />

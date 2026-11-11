@@ -1,0 +1,71 @@
+/* Dreamy hero — teal-to-lavender sky, hologram scene, bottom-left nav */
+:root { --dream-serif: 'Playfair Display', Georgia, serif; --dream-sans: 'DM Sans', 'Inter Tight', system-ui, sans-serif; }
+body.is-dream .header, body.is-dream [class*='topbar'] { display: none; }
+
+.dream {
+  --sky-1: #17a79a; --sky-2: #5fb8c6; --sky-3: #b6a5ea; --sky-4: #d3c0f4;
+  --cloud: radial-gradient(closest-side, #fff 0 30%, #ffd9ee 60%, rgba(255, 217, 238, 0) 100%);
+  position: relative; height: 100svh; min-height: 680px; overflow: hidden; color: #fff;
+  font-family: var(--dream-sans);
+  background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 38%, var(--sky-3) 72%, var(--sky-4) 100%);
+  transition: background .8s ease;
+}
+.dream[data-dream='off'] { --sky-1: #0d1a3a; --sky-2: #25306b; --sky-3: #4a3f86; --sky-4: #6d5aa0; --cloud: radial-gradient(closest-side, #8f86c9 0 30%, #5b4f93 60%, rgba(91, 79, 147, 0) 100%); }
+
+.dream__stars { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle 3px at 9% 9%, #fff 98%, transparent), radial-gradient(circle 4px at 77% 18%, #fff 98%, transparent),
+    radial-gradient(circle 3px at 22% 32%, #fff 98%, transparent), radial-gradient(circle 2px at 55% 12%, #fff 98%, transparent),
+    radial-gradient(circle 2px at 90% 40%, #fff 98%, transparent), radial-gradient(circle 2px at 36% 6%, #fff 98%, transparent); }
+.dream[data-dream='off'] .dream__stars { filter: drop-shadow(0 0 4px #fff); }
+
+.dream__ghost { position: absolute; top: 22%; left: 0; white-space: nowrap; pointer-events: none;
+  font-weight: 300; font-size: clamp(120px, 20vw, 320px); line-height: 1; color: rgba(255, 255, 255, .26); }
+.dream__ghost span { display: inline-block; }
+
+.dream__cloud { position: absolute; width: 46vw; aspect-ratio: 2.4; background: var(--cloud); filter: blur(10px); pointer-events: none; }
+.dream__cloud--l { left: -6vw; top: 48%; }
+.dream__cloud--r { right: -8vw; top: 36%; width: 52vw; }
+
+.dream__intro { position: relative; z-index: 2; text-align: center; padding-top: clamp(20px, 4vh, 48px); }
+.dream__hi { margin: 0; font-family: var(--dream-serif); font-style: italic; font-size: clamp(22px, 2.4vw, 34px); }
+.dream__name { margin: 0; font-family: var(--dream-serif); font-weight: 500; font-size: clamp(72px, 10vw, 150px); line-height: 1; letter-spacing: .08em; padding-left: .08em; }
+.dream__sub { margin: 6px auto 0; max-width: 46ch; font-size: clamp(14px, 1.25vw, 18px); line-height: 1.35; padding: 0 20px; }
+
+.dream__scene { position: absolute; z-index: 1; left: 50%; bottom: -2vh; transform: translateX(-50%); width: min(96vw, 1000px, 150vh); height: auto; overflow: visible; }
+.dream__panel { transform-origin: 500px 240px; }
+
+.dream__nav { position: fixed; z-index: 30; left: clamp(14px, 3vw, 44px); bottom: clamp(14px, 3vh, 36px);
+  display: flex; flex-direction: column; gap: 10px; padding: 18px 22px; border-radius: 22px;
+  background: rgba(20, 70, 90, .28); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.dream__nav a { font-size: 18px; color: rgba(255, 255, 255, .78); transition: color .2s; }
+.dream__nav a:hover, .dream__nav a.active { color: #fff; }
+.dream__nav a.active { font-family: var(--dream-serif); font-size: 24px; }
+.dream__nav a:focus-visible, .dream__switch:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: 8px; }
+.dream__mode { display: flex; align-items: center; gap: 14px; margin-top: 6px; font-size: 18px; color: rgba(255, 255, 255, .78); max-width: 280px; }
+.dream__mode span { max-width: 6ch; line-height: 1.2; }
+.dream__switch { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; width: 96px; height: 44px; padding: 0 6px 0 16px; border-radius: 999px; background: #0f8f80; color: #fff; font-weight: 600; transition: background .3s; }
+.dream__switch i { width: 34px; height: 34px; border-radius: 50%; background: #fff; transition: transform .3s; }
+.dream__switch[aria-checked='false'] { background: #4c4a8a; flex-direction: row-reverse; padding: 0 16px 0 6px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .dream__ghost span { animation: dream-slide 70s linear infinite; }
+  .dream__cloud--l { animation: dream-drift 26s ease-in-out infinite alternate; }
+  .dream__cloud--r { animation: dream-drift 32s ease-in-out infinite alternate-reverse; }
+  .dream__panel { animation: dream-float 5s ease-in-out infinite; }
+}
+@keyframes dream-slide { to { transform: translateX(-50%); } }
+@keyframes dream-drift { to { transform: translateX(4vw); } }
+@keyframes dream-float { 50% { transform: translateY(-12px) rotate(-.6deg); } }
+
+@media (max-width: 720px) {
+  .dream__nav { flex-direction: row; flex-wrap: wrap; right: 14px; bottom: 10px; gap: 8px 16px; padding: 12px 16px; }
+  .dream__mode { width: 100%; max-width: none; margin: 0; font-size: 15px; }
+  .dream__nav a { font-size: 16px; } .dream__nav a.active { font-size: 18px; }
+  .dream__scene { bottom: 22vh; }
+}
+
+.dream__menu { position: fixed; z-index: 30; top: clamp(16px, 3vh, 32px); right: clamp(16px, 3vw, 44px); display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; border-radius: 999px; font-size: 17px; color: #fff; background: rgba(20, 70, 90, .28); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background .25s; }
+.dream__menu:hover { background: rgba(20, 70, 90, .5); }
+.dream__menu i { width: 18px; height: 8px; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; }
+.dream__menu:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }

@@ -1,0 +1,44 @@
+/* Contact page — two-column layout: info, facts and map on the left, form panel on the right */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ct { padding: clamp(150px, 15vw, 210px) 0 clamp(70px, 9vw, 120px); }
+.ct__grid { display: grid; gap: 48px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 960px) { .ct__grid { grid-template-columns: 1.05fr 1fr; gap: clamp(48px, 6vw, 96px); } }
+.ct__title { margin: 0 0 20px; font-family: var(--serif); font-weight: 500; font-size: clamp(44px, 5.4vw, 80px); line-height: 1.02; letter-spacing: -0.02em; }
+.ct__lead { margin: 0; max-width: 52ch; font-size: 18px; color: var(--ink-2); }
+.ct__facts { display: grid; gap: 40px 32px; grid-template-columns: 1fr; margin: 48px 0; }
+@media (min-width: 600px) { .ct__facts { grid-template-columns: 1fr 1fr; } }
+.ct__fact { display: flex; gap: 16px; align-items: flex-start; }
+.ct__icon { flex: none; color: var(--brand); margin-top: 2px; }
+.ct__fact h2 { margin: 0 0 8px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ct__fact p { margin: 0 0 4px; color: var(--ink-2); font-size: 17px; line-height: 1.5; overflow-wrap: anywhere; }
+.ct__fact a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color .25s, color .25s; }
+.ct__fact a:hover { color: var(--brand); text-decoration-color: currentColor; }
+.ct__small { font-size: 15px !important; color: var(--muted) !important; }
+.ct__social { display: flex; flex-wrap: wrap; gap: 10px; }
+.ct__social a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 14px; font-weight: 600; text-decoration: none; background: rgba(255, 255, 255, .6); transition: background .25s, color .25s, border-color .25s; }
+.ct__social a:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+.ct__map { position: relative; border-radius: 20px; overflow: hidden; height: clamp(240px, 26vw, 340px); background: var(--bg-2); box-shadow: 0 0 0 1px var(--line); }
+.ct__map iframe { width: 100%; height: 100%; border: 0; display: block; }
+.ct__maplink { position: absolute; left: 14px; bottom: 14px; padding: 10px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-size: 15px; font-weight: 500; box-shadow: 0 10px 24px -10px rgba(10, 80, 90, .6); }
+
+.ct__panel { padding: clamp(24px, 3vw, 44px); border-radius: 24px; background: rgba(255, 255, 255, .72); box-shadow: 0 0 0 1px rgba(255, 255, 255, .9), 0 30px 50px -36px rgba(23, 100, 110, .4); }
+.ct__ptitle { margin: 0 0 22px; font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.1; }
+.cf { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); color: var(--muted); transition: border-color .25s, color .25s; }
+.cf:focus-within { border-color: var(--brand); color: var(--brand); }
+.cf svg { flex: none; }
+.cf input, .cf select, .cf textarea { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: inherit; font-size: 17px; color: var(--ink); padding: 4px 0; }
+.cf input::placeholder, .cf textarea::placeholder { color: var(--muted); opacity: 1; }
+.cf select { cursor: pointer; }
+.cf--phone { gap: 12px; border-bottom: 0; padding: 18px 0 10px; }
+.cf--phone select, .cf--phone input { border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, .8); padding: 12px 14px; }
+.cf--phone select { flex: 0 0 120px; }
+.cf--phone:focus-within select:focus, .cf--phone input:focus { border-color: var(--brand); }
+.cf--area { align-items: flex-start; }
+.cf--area svg { margin-top: 6px; }
+.cf textarea { resize: vertical; min-height: 110px; }
+.ct__submit { margin-top: 32px; display: inline-flex; align-items: center; gap: 14px; height: 58px; padding: 0 30px; border-radius: 10px; background: var(--brand); color: #fff; font-size: 17px; font-weight: 500; transition: transform .4s var(--ease), box-shadow .3s, background .3s; }
+.ct__submit:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgba(10, 100, 100, .7); }
+.ct__submit:disabled { opacity: .65; cursor: progress; }
+.ct__submit:focus-visible, .cf input:focus-visible, .ct a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.cf input:focus-visible, .cf select:focus-visible, .cf textarea:focus-visible { outline: none; }
+.ct__err { margin: 14px 0 0; color: #a3262a; }
