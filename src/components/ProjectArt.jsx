@@ -23,8 +23,9 @@ export default function ProjectArt({ project, showLabel = true }) {
   const [a, b, c] = project.palette
   if (project.image) {
     return (
-      <div className="art">
-        <img src={project.image} alt={`${project.title} — ${project.kind}`} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      <div className="art art--photo">
+        <img className="art__fill" src={project.image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img className="art__img" src={project.image} alt={`${project.title} — ${project.kind}`} loading="lazy" decoding="async" />
       </div>
     )
   }

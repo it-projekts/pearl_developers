@@ -225,19 +225,20 @@ export const industries = [
 // TODO replace with your real projects (client names, links, images)
 export const projectFilters = ['All', 'Systems', 'Mobile', 'Web', 'AI', 'IoT']
 
+// Sample images for now (not our systems); swap in real ones as they are built.
 export const projects = [
-  { title: 'Kiguma SACCO Suite', category: 'Systems', kind: 'Core banking & member portal', year: '2026', palette: ['#e7d6f3', '#f7e3d6', '#b9c4ef'], shape: 'rings' },
-  { title: 'Campus One', category: 'Systems', kind: 'School management platform', year: '2025', palette: ['#d7e7f6', '#f4ead9', '#c7b6e6'], shape: 'grid' },
-  { title: 'Mediq HMS', category: 'Systems', kind: 'Hospital management system', year: '2025', palette: ['#d3efe6', '#eef0f6', '#a9d0e8'], shape: 'pulse' },
-  { title: 'Ride & Route', category: 'Mobile', kind: 'Taxi park & fleet app', year: '2025', palette: ['#f6dccf', '#f3efe7', '#e5b9a8'], shape: 'wave' },
-  { title: 'Ask Pearl', category: 'AI', kind: 'Customer support chatbot', year: '2026', palette: ['#e4d9f7', '#fbe7ef', '#c2b0ee'], shape: 'orb' },
-  { title: 'Market Bloom', category: 'Web', kind: 'Multi‑vendor e‑commerce', year: '2024', palette: ['#f7e6cf', '#f6dfe3', '#ecc49b'], shape: 'arch' },
+  { title: 'Kiguma SACCO Suite', image: '/projects/kiguma-sacco.webp', category: 'Systems', kind: 'Core banking & member portal', year: '2026', palette: ['#e7d6f3', '#f7e3d6', '#b9c4ef'], shape: 'rings' },
+  { title: 'Campus One', image: '/projects/sms.webp', category: 'Systems', kind: 'School management platform', year: '2025', palette: ['#d7e7f6', '#f4ead9', '#c7b6e6'], shape: 'grid' },
+  { title: 'Mediq HMS', image: '/projects/hms.webp', category: 'Systems', kind: 'Hospital management system', year: '2025', palette: ['#d3efe6', '#eef0f6', '#a9d0e8'], shape: 'pulse' },
+  { title: 'Ride & Route', image: '/projects/rnr.webp', category: 'Mobile', kind: 'Taxi park & fleet app', year: '2025', palette: ['#f6dccf', '#f3efe7', '#e5b9a8'], shape: 'wave' },
+  { title: 'Ask Pearl', image: '/projects/chatbot.webp', category: 'AI', kind: 'Customer support chatbot', year: '2026', palette: ['#e4d9f7', '#fbe7ef', '#c2b0ee'], shape: 'orb' },
+  { title: 'Market Bloom', image: '/projects/e-commerce.webp', category: 'Web', kind: 'Multi‑vendor e‑commerce', year: '2024', palette: ['#f7e6cf', '#f6dfe3', '#ecc49b'], shape: 'arch' },
   { title: 'Sentinel Watch', category: 'IoT', kind: 'Intrusion & smoke detection', year: '2025', palette: ['#d6dbe8', '#e9e4dc', '#9fb0cf'], shape: 'radar' },
-  { title: 'Ballot Clear', category: 'Systems', kind: 'Secure digital voting', year: '2024', palette: ['#e1ecd9', '#f3eee4', '#b7d1a8'], shape: 'grid' },
-  { title: 'Feast Express', category: 'Mobile', kind: 'Food ordering & delivery', year: '2024', palette: ['#fbd9cf', '#fbefe1', '#f0a993'], shape: 'wave' },
-  { title: 'Vision Count', category: 'AI', kind: 'Computer‑vision stock counting', year: '2026', palette: ['#d8e3f5', '#efe7f5', '#a7bce6'], shape: 'orb' },
-  { title: 'Kindred Giving', category: 'Web', kind: 'Charity & donations platform', year: '2025', palette: ['#f3e0e6', '#f2ece3', '#d9a9ba'], shape: 'arch' },
-  { title: 'Agro Ledger', category: 'Mobile', kind: 'Farm management app', year: '2025', palette: ['#e2ecd0', '#f4f0e2', '#bfd39a'], shape: 'rings' },
+  { title: 'Ballot Clear', image: '/projects/e-voting.webp', category: 'Systems', kind: 'Secure digital voting', year: '2024', palette: ['#e1ecd9', '#f3eee4', '#b7d1a8'], shape: 'grid' },
+  { title: 'Feast Express', image: '/projects/food-ordering.webp', category: 'Mobile', kind: 'Food ordering & delivery', year: '2024', palette: ['#fbd9cf', '#fbefe1', '#f0a993'], shape: 'wave' },
+  { title: 'Vision Count', image: '/projects/stock.webp', category: 'AI', kind: 'Computer‑vision stock counting', year: '2026', palette: ['#d8e3f5', '#efe7f5', '#a7bce6'], shape: 'orb' },
+  { title: 'Kindred Giving', image: '/projects/donation.webp', category: 'Web', kind: 'Charity & donations platform', year: '2025', palette: ['#f3e0e6', '#f2ece3', '#d9a9ba'], shape: 'arch' },
+  { title: 'Agro Ledger', image: '/projects/farm.webp', category: 'Mobile', kind: 'Farm management app', year: '2025', palette: ['#e2ecd0', '#f4f0e2', '#bfd39a'], shape: 'rings' },
 ]
 
 // ── Values & process ────────────────────────────────────────

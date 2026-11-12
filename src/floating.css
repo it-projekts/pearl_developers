@@ -101,3 +101,9 @@
 /* Work grid: paper-fold on scroll */
 
 .fold { transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden; }
+
+/* Project photos: whole image shown, blurred copy fills the rest of the card */
+.art--photo { background: #e9eef3; }
+.art--photo img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.art__fill { object-fit: cover; filter: blur(22px) saturate(1.2); transform: scale(1.15); opacity: .85; }
+.art__img { object-fit: contain; }
