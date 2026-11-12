@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Chevron, Logo, Arrow, ease } from './ui.jsx'
+import { MenuIcon } from './MenuIcons.jsx'
 import { company, services, solutionGroups, industries, solutionCount } from '../data/site.js'
 
 const mega = {
@@ -54,7 +55,7 @@ function MegaMenu({ data, onClose }) {
         <div className="mega__list">
           {data.items.map((it, i) => (
             <Link key={it.title} to={it.to} className={`mega__item ${i === active ? 'is-on' : ''}`} onMouseEnter={() => setActive(i)} onClick={onClose}>
-              <span className="mega__icon" style={{ backgroundPosition: `${i * 23}% 0` }}>{it.title[0]}</span>
+              <span className="mega__icon" style={{ backgroundPosition: `${i * 23}% 0` }}><MenuIcon title={it.title} /></span>
               <span>
                 <strong>{it.title}</strong>
                 <small>{it.text}</small>
