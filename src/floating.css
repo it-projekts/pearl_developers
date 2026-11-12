@@ -97,3 +97,7 @@
 .float-chat__more { display: flex; justify-content: center; gap: 18px; font-size: 14px; }
 .float-chat__panel .float-chat__more a { display: inline; padding: 0; border: 0; color: #fff; text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
 .float-chat__panel .float-chat__more a:hover { background: none; opacity: .85; }
+
+/* Work grid: paper-fold on scroll */
+
+.fold { transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden; }

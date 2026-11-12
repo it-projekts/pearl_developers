@@ -24,7 +24,7 @@ export default function ProjectArt({ project, showLabel = true }) {
   if (project.image) {
     return (
       <div className="art">
-        <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src={project.image} alt={`${project.title} — ${project.kind}`} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
     )
   }

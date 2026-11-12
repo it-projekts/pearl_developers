@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { Arrow, Reveal, SplitWords, ease } from './ui.jsx'
 import ProjectArt from './ProjectArt.jsx'
 import { services, projects, projectFilters, solutionGroups, industries, process, values, testimonials } from '../data/site.js'
@@ -68,7 +68,34 @@ export function ServicesIndex() {
 }
 
 /* ─── Work grid with filter pills (unseen.co style) ─── */
+/* Opens the project's own link when it has one, otherwise the contact page */
+function ProjectLink({ project, children }) {
+  return project.link
+    ? <a href={project.link} target="_blank" rel="noreferrer" className="card" data-cursor>{children}</a>
+    : <Link to="/contact" className="card" data-cursor>{children}</Link>
+}
+
+/* A project card that folds like paper as it travels through the screen,
+   and waves with the speed of scrolling (up or down). */
+function FoldCard({ wave, children }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const fold = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [32, 0, 0, -32])
+  const rotateX = useTransform([fold, wave], ([f, w]) => f + w * 10)
+  const skewY = useTransform(wave, (w) => w * -2.5)
+  const scaleY = useTransform(wave, (w) => 1 - Math.abs(w) * 0.06)
+  return (
+    <motion.div ref={ref} className="fold" style={{ rotateX, skewY, scaleY, transformPerspective: 1200 }}>
+      {children}
+    </motion.div>
+  )
+}
+
 export function WorkGrid({ limit, showHead = true }) {
+  const reduce = useReducedMotion()
+  const { scrollY } = useScroll()
+  const speed = useSpring(useVelocity(scrollY), { stiffness: 120, damping: 30 })
+  const wave = useTransform(speed, [-2500, 0, 2500], [-1, 0, 1], { clamp: true })
   const [filter, setFilter] = useState('All')
   const counts = useMemo(() => Object.fromEntries(projectFilters.map((f) => [f, f === 'All' ? projects.length : projects.filter((p) => p.category === f).length])), [])
   const list = projects.filter((p) => filter === 'All' || p.category === filter).slice(0, limit || 99)
@@ -98,16 +125,21 @@ export function WorkGrid({ limit, showHead = true }) {
               transition={{ duration: 0.8, ease, delay: (i % 2) * 0.08 }}
               style={{ marginTop: i % 2 === 1 ? 'var(--stagger, 0px)' : 0 }}
             >
-              <Link to="/contact" className="card" data-cursor>
-                <div className="card__media"><ProjectArt project={p} /></div>
-                <div className="card__meta">
-                  <div>
-                    <div className="card__title">{p.title}</div>
-                    <div className="card__kind">{p.kind}</div>
-                  </div>
-                  <span className="card__arrow"><Arrow /></span>
-                </div>
-              </Link>
+              {(() => {
+                const card = (
+                  <ProjectLink project={p}>
+                    <div className="card__media"><ProjectArt project={p} /></div>
+                    <div className="card__meta">
+                      <div>
+                        <div className="card__title">{p.title}</div>
+                        <div className="card__kind">{p.kind}</div>
+                      </div>
+                      <span className="card__arrow"><Arrow /></span>
+                    </div>
+                  </ProjectLink>
+                )
+                return reduce ? card : <FoldCard wave={wave}>{card}</FoldCard>
+              })()}
             </motion.div>
           ))}
         </AnimatePresence>
