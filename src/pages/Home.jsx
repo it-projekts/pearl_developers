@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Arrow, Counter, Reveal, SplitWords, ease } from '../components/ui.jsx'
 import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
 import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
-import { stats, solutionCount } from '../data/site.js'
+import { stats, solutionCount, testimonials } from '../data/site.js'
 
 const PearlScene = lazy(() => import('../components/PearlScene.jsx'))
 
@@ -217,8 +217,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section section--night">
+      {/* Testimonials (hidden until real quotes are added in site.js) */}
+      {testimonials.length > 0 && <section className="section section--night">
         <div className="container">
           <div className="section-head">
             <h2 className="h-2">Kind <span className="italic">words</span></h2>
@@ -226,7 +226,7 @@ export default function Home() {
           </div>
           <Testimonials />
         </div>
-      </section>
+      </section>}
 
       <BigCTA />
     </>

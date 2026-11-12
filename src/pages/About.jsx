@@ -82,7 +82,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section section--paper">
+      {team.length > 0 && <section className="section section--paper">
         <div className="container">
           <div className="section-head">
             <h2 className="h-1">Meet the <span className="italic">people</span></h2>
@@ -100,7 +100,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
       <BigCTA />
     </>
   )

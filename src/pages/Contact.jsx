@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { company, services } from '../data/site.js'
+import { company, services, liveSocials } from '../data/site.js'
 
 // Optional: set a Formspree (https://formspree.io) or similar endpoint to receive
 // submissions by email. When empty, the form opens the visitor's email app instead.
@@ -72,17 +72,19 @@ export default function Contact() {
               <span className="ct__icon">{icons.mail}</span>
               <div><h2>Email</h2><p><a href={`mailto:${company.email}`}>{company.email}</a></p></div>
             </div>
-            <div className="ct__fact">
+            {liveSocials.length > 0 && (
+              <div className="ct__fact">
               <span className="ct__icon">{icons.share}</span>
               <div>
                 <h2>Social</h2>
                 <div className="ct__social">
-                  {company.socials.map((s) => (
+                  {liveSocials.map((s) => (
                     <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>{short[s.label] || s.label[0]}</a>
                   ))}
                 </div>
               </div>
             </div>
+            )}
           </div>
 
           <div className="ct__map">

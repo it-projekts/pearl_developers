@@ -13,14 +13,18 @@ export const company = {
   whatsapp: '256792875432', // TODO digits only, used for wa.me link
   address: 'Kikandwa, Kakiri, Kampala, Uganda', // TODO full office address
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
+  // Paste each full profile link between the quotes. Links left empty are hidden on the site.
   socials: [
-    { label: 'LinkedIn', href: '#' }, // TODO
-    { label: 'X / Twitter', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'Facebook', href: '#' },
-    { label: 'GitHub', href: '#' },
+    { label: 'LinkedIn', href: '' },
+    { label: 'X / Twitter', href: '' },
+    { label: 'Instagram', href: '' },
+    { label: 'Facebook', href: '' },
+    { label: 'GitHub', href: '' },
   ],
 }
+
+// Only the social accounts that have a real link
+export const liveSocials = company.socials.filter((s) => s.href && s.href !== '#')
 
 // ── Services ────────────────────────────────────────────────
 export const services = [
@@ -252,18 +256,10 @@ export const process = [
   { title: 'Grow', text: 'Support, analytics and new features as you scale.' },
 ]
 
-export const testimonials = [
-  // TODO replace with real client quotes (with permission)
-  { quote: 'Add a real client quote here — what changed for them after working with Pearl Developers.', name: 'Client name', role: 'Title, Organisation' },
-  { quote: 'A second testimonial goes here. Short, specific and about outcomes works best.', name: 'Client name', role: 'Title, Organisation' },
-  { quote: 'A third testimonial. Mention speed, quality, support or measurable results.', name: 'Client name', role: 'Title, Organisation' },
-]
+// Real client quotes (with their permission). The "Kind words" section stays hidden while this list is empty.
+// Example: { quote: 'They delivered our SACCO system in six weeks…', name: 'Jane Doe', role: 'Manager, Example SACCO' },
+export const testimonials = []
 
-export const team = [
-  // TODO replace with your real team (add photo: '/team/name.jpg' in /public/team)
-  { name: 'Team Member', role: 'Founder & CEO' },
-  { name: 'Team Member', role: 'Lead Engineer' },
-  { name: 'Team Member', role: 'Product Designer' },
-  { name: 'Team Member', role: 'Mobile Lead' },
-  { name: 'Team Member', role: 'Project Manager' },
-]
+// Your real team. The "Meet the people" section stays hidden while this list is empty.
+// Example: { name: 'Jane Doe', role: 'Founder & CEO', photo: '/team/jane.jpg' }  (put photos in /public/team)
+export const team = []

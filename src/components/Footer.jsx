@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from './ui.jsx'
-import { company, services, solutionGroups, industries } from '../data/site.js'
+import { company, services, solutionGroups, industries, liveSocials } from '../data/site.js'
 
 /* Looping video that shows only through the letters of the wordmark */
 function VideoFill() {
@@ -69,12 +69,14 @@ export default function Footer() {
               <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/contact?topic=careers">Careers</Link></li>
             </ul>
-            <h5 style={{ marginTop: 30 }}>Follow</h5>
-            <ul>
-              {company.socials.map((s) => (
-                <li key={s.label}><a href={s.href} target="_blank" rel="noreferrer">{s.label}</a></li>
-              ))}
-            </ul>
+            {liveSocials.length > 0 && <>
+              <h5 style={{ marginTop: 30 }}>Follow</h5>
+              <ul>
+                {liveSocials.map((s) => (
+                  <li key={s.label}><a href={s.href} target="_blank" rel="noreferrer">{s.label}</a></li>
+                ))}
+              </ul>
+            </>}
           </div>
         </div>
         <div className="footer__giant" aria-hidden="true">

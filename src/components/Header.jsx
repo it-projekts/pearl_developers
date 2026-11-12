@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Chevron, Logo, Arrow, ease } from './ui.jsx'
 import { MenuIcon } from './MenuIcons.jsx'
-import { company, services, solutionGroups, industries, solutionCount } from '../data/site.js'
+import { company, services, solutionGroups, industries, solutionCount, liveSocials } from '../data/site.js'
 
 const mega = {
   company: {
@@ -220,7 +220,7 @@ export function SideMenu({ open, onClose }) {
                 <div className="muted" style={{ fontSize: 15, marginTop: 6 }}>{company.address}</div>
               </div>
               <ul className="menu__socials">
-                {company.socials.map((s) => (
+                {liveSocials.map((s) => (
                   <li key={s.label}><a href={s.href} target="_blank" rel="noreferrer">{s.label}</a></li>
                 ))}
               </ul>
