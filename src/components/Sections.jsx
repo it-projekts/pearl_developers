@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { Arrow, Reveal, SplitWords, ease } from './ui.jsx'
 import ProjectArt from './ProjectArt.jsx'
+import { WaveGallery, WaveMedia, useWaveGallery } from './WaveGallery.jsx'
 import { services, projects, projectFilters, solutionGroups, industries, process, values, testimonials } from '../data/site.js'
 
 /* ─── Marquee ─── */
@@ -113,6 +114,7 @@ export function WorkGrid({ limit, showHead = true }) {
           </div>
         </div>
       )}
+      <WaveGallery>
       <motion.div layout className="work-grid">
         <AnimatePresence mode="popLayout">
           {list.map((p, i) => (
@@ -125,27 +127,33 @@ export function WorkGrid({ limit, showHead = true }) {
               transition={{ duration: 0.8, ease, delay: (i % 2) * 0.08 }}
               style={{ marginTop: i % 2 === 1 ? 'var(--stagger, 0px)' : 0 }}
             >
-              {(() => {
-                const card = (
-                  <ProjectLink project={p}>
-                    <div className="card__media"><ProjectArt project={p} /></div>
-                    <div className="card__meta">
-                      <div>
-                        <div className="card__title">{p.title}</div>
-                        <div className="card__kind">{p.kind}</div>
-                      </div>
-                      <span className="card__arrow"><Arrow /></span>
-                    </div>
-                  </ProjectLink>
-                )
-                return reduce ? card : <FoldCard wave={wave}>{card}</FoldCard>
-              })()}
+              <WorkCard project={p} wave={wave} reduce={reduce} />
             </motion.div>
           ))}
         </AnimatePresence>
       </motion.div>
+      </WaveGallery>
     </>
   )
+}
+
+/* Image cards bend in WebGL; the rest (or every card without WebGL) fold with CSS */
+function WorkCard({ project: p, wave, reduce }) {
+  const gl = useWaveGallery()
+  const card = (
+    <ProjectLink project={p}>
+      <WaveMedia src={p.image}><ProjectArt project={p} /></WaveMedia>
+      <div className="card__meta">
+        <div>
+          <div className="card__title">{p.title}</div>
+          <div className="card__kind">{p.kind}</div>
+        </div>
+        <span className="card__arrow"><Arrow /></span>
+      </div>
+    </ProjectLink>
+  )
+  if (reduce || (gl && p.image)) return card
+  return <FoldCard wave={wave}>{card}</FoldCard>
 }
 
 /* ─── Solutions catalogue (from the systems we have built) ─── */
