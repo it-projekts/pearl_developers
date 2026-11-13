@@ -1,10 +1,10 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Arrow, Counter, Reveal, SplitWords, ease } from '../components/ui.jsx'
+import { Arrow, Reveal, SplitWords, ease } from '../components/ui.jsx'
 import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
 import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
-import { stats, solutionCount, testimonials } from '../data/site.js'
+import { solutionCount, testimonials } from '../data/site.js'
 
 const PearlScene = lazy(() => import('../components/PearlScene.jsx'))
 
@@ -38,37 +38,22 @@ function Hero() {
   return (
     <section className="ph">
       <div className="ph__inner">
-        <motion.span className="ph__pill" {...up(0)}>
-          <i aria-hidden="true" /> Software · AI · Business systems, built in Uganda
-        </motion.span>
-
-        <motion.h1 className="ph__title" {...up(0.08)}>
+        <motion.h1 className="ph__title" {...up(0)}>
           <span className="ph__thin">A </span><b>Software &amp; AI Studio</b>{' '}
           <br />
           <span className="ph__thin">turning your ideas into </span><b>products that work</b>
         </motion.h1>
 
-        <motion.p className="ph__sub" {...up(0.16)}>
+        <motion.p className="ph__sub" {...up(0.08)}>
           We design and build custom software, mobile apps, AI tools and {solutionCount}+ ready‑to‑deploy
           business systems for SACCOs, schools, hospitals, hotels and growing companies.
         </motion.p>
 
-        <motion.div className="ph__ctas" {...up(0.24)}>
+        <motion.div className="ph__ctas" {...up(0.16)}>
           <Link to="/work" className="ph__btn ph__btn--solid">View our work <Arrow dir="right" /></Link>
           <Link to="/contact" className="ph__btn ph__btn--ghost">Book a free call <Arrow dir="right" /></Link>
         </motion.div>
 
-        <motion.div className="ph__trust" {...up(0.32)}>
-          <div className="ph__label"><span>Pearl Developers in numbers</span></div>
-          <div className="ph__stats">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <strong><Counter to={s.value} suffix={s.suffix} /></strong>
-                <small>{s.label}</small>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
       <Marquee items={HERO_TAGS} />
     </section>
@@ -132,14 +117,14 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Statement + stats */}
+      {/* What we do, in one statement */}
       <section className="section">
         <div className="container">
           <Reveal><span className="eyebrow">Who we are</span></Reveal>
           <h2 className="statement" style={{ marginTop: 28 }}>
-            <SplitWords text="Every pearl begins as a grain of sand." />{' '}
-            <span className="italic muted"><SplitWords text="Every great product begins as an idea." delay={0.2} /></span>{' '}
-            <SplitWords text="We add the layers that make it rare." delay={0.4} />
+            <SplitWords text="We build custom software, mobile apps and AI tools," />{' '}
+            <span className="italic muted"><SplitWords text="plus ready‑made systems for SACCOs, schools, hospitals and businesses." delay={0.2} /></span>{' '}
+            <SplitWords text="Built in Uganda, supported long after launch." delay={0.4} />
           </h2>
         </div>
       </section>

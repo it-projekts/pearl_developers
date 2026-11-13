@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { Arrow, Reveal, SplitWords, ease } from './ui.jsx'
 import ProjectArt from './ProjectArt.jsx'
+import { LineIcon } from './MenuIcons.jsx'
 import { WaveGallery, WaveMedia, useWaveGallery } from './WaveGallery.jsx'
 import { services, projects, projectFilters, solutionGroups, industries, process, values, testimonials } from '../data/site.js'
 
@@ -242,7 +243,9 @@ export function Values() {
       {values.map((v, i) => (
         <Reveal key={v.title} className="value" delay={i * 0.08}>
           <div className="value__art" style={{ background: valueArt[i % 4] }}>
-            <span className="italic" style={{ position: 'absolute', left: 22, bottom: 10, fontSize: 90, lineHeight: 1, color: 'rgba(27,24,26,.75)' }}>{v.title[0]}</span>
+            {v.image
+              ? <img className="value__img" src={v.image} alt="" loading="lazy" decoding="async" />
+              : <span className="value__icon"><LineIcon name={v.icon} size={44} stroke={1.4} /></span>}
           </div>
           <div className="value__body">
             <h3>{v.title}</h3>

@@ -242,11 +242,13 @@ export const projects = [
 ]
 
 // ── Values & process ────────────────────────────────────────
+// Each value card shows `image` if you add one (put it in /public/values, e.g. image: '/values/integrity.jpg'),
+// otherwise the line icon named in `icon`.
 export const values = [
-  { title: 'Integrity', text: 'We keep our word, price honestly and protect your data as if it were our own.' },
-  { title: 'Craft', text: 'Like a pearl, great software is built layer by layer. We sweat the details.' },
-  { title: 'Transparency', text: 'Clear timelines, open communication and progress you can see every week.' },
-  { title: 'Partnership', text: 'We stay after launch — supporting, improving and growing with you.' },
+  { title: 'Integrity', icon: 'shield', text: 'We keep our word, price honestly and protect your data as if it were our own.' },
+  { title: 'Craft', icon: 'gem', text: 'Like a pearl, great software is built layer by layer. We sweat the details.' },
+  { title: 'Transparency', icon: 'eye', text: 'Clear timelines, open communication and progress you can see every week.' },
+  { title: 'Partnership', icon: 'hands', text: 'We stay after launch — supporting, improving and growing with you.' },
 ]
 
 export const process = [
