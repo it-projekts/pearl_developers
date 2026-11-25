@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Chevron, Logo, Arrow, ease } from './ui.jsx'
+import TopBar from './TopBar.jsx'
 import { MenuIcon } from './MenuIcons.jsx'
 import { company, services, solutionGroups, industries, solutionCount, liveSocials } from '../data/site.js'
 
@@ -128,10 +129,7 @@ export default function Header({ onOpenMenu }) {
 
   return (
     <>
-      <div className="topbar">
-        <span className="topbar__long">Transforming ideas into powerful digital solutions — </span>{solutionCount}+ ready systems, custom software & AI.{' '}
-        <Link to="/contact">Book a free consultation</Link>
-      </div>
+      <TopBar />
       <header className={`header has-topbar ${scrolled ? 'is-scrolled' : ''} ${hidden && !open ? 'is-hidden' : ''}`} onMouseLeave={leave}>
         <div className="container header__inner">
           <Logo />

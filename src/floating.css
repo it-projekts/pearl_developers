@@ -121,3 +121,24 @@
   background: rgba(255, 255, 255, .55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 12px 30px -14px rgba(40, 20, 60, .45), inset 0 0 0 1px rgba(255, 255, 255, .7);
 }
+
+/* Top bar: contact details left, social icons right (colours come from dreamy.css) */
+.topbar { height: 44px; line-height: normal; font-size: 15px; font-weight: 600; letter-spacing: 0; padding: 0; }
+.topbar__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.topbar__info, .topbar__social { display: flex; align-items: center; gap: 26px; }
+.topbar__social { gap: 18px; }
+.topbar a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; min-height: 44px; }
+.topbar__info a:hover { text-decoration: underline; }
+.topbar a:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+.topbar svg { flex: none; }
+.topbar__social a { transition: transform .2s; }
+.topbar__social a:hover { transform: translateY(-2px); }
+.header.has-topbar:not(.is-scrolled) { top: 44px; }
+@media (max-width: 900px) { .topbar__place { display: none !important; } }
+@media (max-width: 560px) {
+  .topbar { font-size: 13px; }
+  .topbar__info { gap: 14px; }
+  .topbar__social { display: none; }
+  .topbar__inner { justify-content: center; }
+}
+@media (max-width: 400px) { .topbar { font-size: 12px; } .topbar a { gap: 5px; } .topbar svg { width: 14px; } }
