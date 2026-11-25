@@ -5,7 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 const LINES = [
   ['We build custom software, mobile apps and AI tools.', 0.06, 0.36],
   ['Ready‑made systems for SACCOs, schools, hospitals and businesses.', 0.4, 0.66],
-  ['Built in Uganda, supported long after launch.', 0.7, 0.9],
+  ['Built in Uganda, supported long after launch.', 0.68, 0.86],
 ]
 
 function Word({ children, progress, from, to, still }) {
@@ -25,13 +25,13 @@ export default function WhoWeAre() {
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return
       io.disconnect()
-      import('../lib/pearlShell.js').then(({ startShell }) => {
+      import('../lib/laptop.js').then(({ startLaptop }) => {
         if (dead || !art.current) return
         // a fresh canvas each time: a disposed WebGL canvas cannot be reused
         const el = document.createElement('canvas')
         art.current.appendChild(el)
         try {
-          const end = startShell(el, () => scrollYProgress.get(), still)
+          const end = startLaptop(el, () => scrollYProgress.get(), still)
           stop = () => { end(); el.remove() }
         } catch {
           el.remove() // no WebGL: the text stands alone
