@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Arrow, Reveal, SplitWords, ease } from '../components/ui.jsx'
 import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
 import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
-import { solutionCount, testimonials } from '../data/site.js'
+import { heroImage, solutionCount, testimonials } from '../data/site.js'
 
 const PearlScene = lazy(() => import('../components/PearlScene.jsx'))
 
@@ -37,6 +37,7 @@ function Hero() {
 
   return (
     <section className="ph">
+      <img className="ph__bg" src={heroImage} alt="" fetchpriority="high" />
       <div className="ph__inner">
         <motion.h1 className="ph__title" {...up(0)}>
           <span className="ph__thin">A </span><b>Software &amp; AI Studio</b>{' '}

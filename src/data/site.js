@@ -266,3 +266,7 @@ export const testimonials = []
 // Your real team. The "Meet the people" section stays hidden while this list is empty.
 // Example: { name: 'Jane Doe', role: 'Founder & CEO', photo: '/team/jane.jpg' }  (put photos in /public/team)
 export const team = []
+
+// Home page background. To use a photo, put it in /public/hero (about 1920px wide, subject on the right)
+// and change this to e.g. '/hero/team.jpg'.
+export const heroImage = '/hero/hero.svg'
