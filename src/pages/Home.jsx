@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Arrow, ease } from '../components/ui.jsx'
-import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
+import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values } from '../components/Sections.jsx'
 import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
 import WhoWeAre from '../components/WhoWeAre.jsx'
 import { heroImage, solutionCount, testimonials } from '../data/site.js'
@@ -128,16 +128,6 @@ export default function Home() {
             <h2 className="h-1 svc-head">What we <span className="italic">do</span></h2>
           </div>
           <ServicesIndex />
-        </div>
-      </section>
-
-      {/* Work */}
-      <section className="section" id="work" style={{ background: 'linear-gradient(180deg, var(--bg), #dfe9f4)' }}>
-        <div className="container">
-          <WorkGrid limit={6} />
-          <div style={{ textAlign: 'center', marginTop: 60 }}>
-            <Link to="/work" className="btn btn--dark">See all projects <Arrow dir="right" /></Link>
-          </div>
         </div>
       </section>
 
