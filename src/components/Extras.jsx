@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { company, services, solutionGroups, industries } from '../data/site.js'
+import { courses } from '../data/courses.js'
 
 /** Circle cursor that grows over links/buttons (desktop only) */
 export function Cursor() {
@@ -75,6 +76,9 @@ const HELP = [
   { t: 'Our work', d: 'Selected projects and case studies', to: '/work' },
   { t: 'About Pearl Developers', d: 'Our story, team and values', to: '/about' },
   { t: 'How we work', d: 'Our delivery process, step by step', to: '/about#process' },
+  { t: 'Study online', d: 'Live short courses in ICT', to: '/online_study' },
+  { t: 'Schedule an online lesson', d: 'Pick a class and time', to: '/online_study/schedule' },
+  ...courses.map((c) => ({ t: c.title, d: `Short course: ${c.text}`, to: `/online_study#${c.slug}`, k: c.classes.join(' ') })),
   ...services.map((s) => ({ t: s.title, d: s.short, to: `/services/${s.slug}`, k: s.items.join(' ') })),
   ...solutionGroups.flatMap((g) => g.items.map(([t, d]) => ({ t, d, to: `/solutions?group=${g.key}` }))),
   ...industries.map((i) => ({ t: i.title, d: i.text, to: '/industries', k: i.apps.join(' ') })),

@@ -9,6 +9,7 @@ import './dreamy.css'
 import './contact.css'
 import './hero.css'
 import './floating.css'
+import './online.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

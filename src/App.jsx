@@ -14,6 +14,9 @@ import Solutions from './pages/Solutions.jsx'
 import Industries from './pages/Industries.jsx'
 import Work from './pages/Work.jsx'
 import Contact from './pages/Contact.jsx'
+import OnlineStudy from './pages/OnlineStudy.jsx'
+import ScheduleLesson from './pages/ScheduleLesson.jsx'
+import Classroom from './pages/Classroom.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 const titles = {
@@ -24,6 +27,7 @@ const titles = {
   '/industries': 'Industries — Pearl Developers',
   '/work': 'Work — Pearl Developers',
   '/contact': 'Contact — Pearl Developers',
+  '/online_study': 'Study Online — Pearl Developers',
 }
 
 export default function App() {
@@ -90,6 +94,9 @@ export default function App() {
             <Route path="/industries" element={<Industries />} />
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/online_study" element={<OnlineStudy />} />
+            <Route path="/online_study/schedule" element={<ScheduleLesson />} />
+            <Route path="/online_study/class/:room" element={<Classroom />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

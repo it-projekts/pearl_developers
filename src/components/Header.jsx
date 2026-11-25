@@ -146,8 +146,8 @@ export default function Header({ onOpenMenu }) {
             </NavLink>
           </nav>
           <div className="header__actions">
-            <Link to="/contact" className="btn btn--dark header__cta">
-              Let’s talk <Arrow dir="right" />
+            <Link to="/online_study" className="btn btn--dark header__cta">
+              Study Online <Arrow dir="right" />
             </Link>
             <button className="dots-btn" onClick={onOpenMenu} aria-label="Open menu">
               <span><i /><i /></span>
