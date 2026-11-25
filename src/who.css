@@ -1,0 +1,19 @@
+/* Home: "Who we are", pinned while the shell opens */
+.who { position: relative; height: 320vh; background: #0a3a40; color: #fff; }
+.who__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(60% 70% at 72% 52%, #23838a 0%, #125560 42%, #0a3a40 100%); }
+.who__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; height: 100%; max-width: 1640px; margin: 0 auto; padding: 100px 80px 30px max(var(--gutter), 6vw); }
+.who__text { position: relative; z-index: 1; }
+.who h2 { margin: 0 0 28px; font: 500 20px var(--sans); color: #9fe3d4; }
+.who p { margin: 0 0 .7em; max-width: 17em; font: 700 clamp(28px, min(3.1vw, 5.2vh), 50px)/1.18 var(--sans); letter-spacing: -.02em; }
+.who p:last-child { margin-bottom: 0; }
+.who__art { position: relative; height: 100%; min-width: 0; }
+.who__art canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+@media (max-width: 899px) {
+  .who { height: 280vh; }
+  .who__inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 8px; padding: 84px max(84px, var(--gutter)) 34px var(--gutter); }
+  .who__art { grid-row: 1; margin-right: -68px; }
+  .who h2 { margin-bottom: 12px; font-size: 17px; }
+  .who p { font-size: clamp(20px, 5.4vw, 34px); line-height: 1.22; margin-bottom: .5em; }
+  .who__stage { background: radial-gradient(110% 50% at 50% 32%, #23838a 0%, #125560 50%, #0a3a40 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .who { height: auto; } .who__stage { position: relative; } }

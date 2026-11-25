@@ -1,9 +1,10 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Arrow, Reveal, SplitWords, ease } from '../components/ui.jsx'
+import { Arrow, ease } from '../components/ui.jsx'
 import { BigCTA, IndustriesGrid, Marquee, Process, ServicesIndex, SolutionsCatalog, Testimonials, Values, WorkGrid } from '../components/Sections.jsx'
 import { Typed, useSplashDone, useTypedLines } from '../components/Intro.jsx'
+import WhoWeAre from '../components/WhoWeAre.jsx'
 import { heroImage, solutionCount, testimonials } from '../data/site.js'
 
 const PearlScene = lazy(() => import('../components/PearlScene.jsx'))
@@ -118,17 +119,7 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* What we do, in one statement */}
-      <section className="section">
-        <div className="container">
-          <Reveal><span className="eyebrow">Who we are</span></Reveal>
-          <h2 className="statement" style={{ marginTop: 28 }}>
-            <SplitWords text="We build custom software, mobile apps and AI tools," />{' '}
-            <span className="italic muted"><SplitWords text="plus ready‑made systems for SACCOs, schools, hospitals and businesses." delay={0.2} /></span>{' '}
-            <SplitWords text="Built in Uganda, supported long after launch." delay={0.4} />
-          </h2>
-        </div>
-      </section>
+      <WhoWeAre />
 
       {/* Services */}
       <section className="section section--paper" id="services">
