@@ -142,3 +142,4 @@
   .topbar__inner { justify-content: center; }
 }
 @media (max-width: 400px) { .topbar { font-size: 12px; } .topbar a { gap: 5px; } .topbar svg { width: 14px; } }
+.topbar__social span { display: inline-flex; }

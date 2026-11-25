@@ -13,12 +13,14 @@ export const company = {
   whatsapp: '256792875432', // TODO digits only, used for wa.me link
   address: 'Kikandwa, Kakiri, Kampala, Uganda', // TODO full office address
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
-  // Paste each full profile link between the quotes. Links left empty are hidden on the site.
+  // Paste each full profile link between the quotes. Empty ones are hidden in the menu, footer and
+  // contact page. The top bar always shows Facebook, X, TikTok and Instagram; they become clickable once filled in.
   socials: [
-    { label: 'LinkedIn', href: '' },
-    { label: 'X / Twitter', href: '' },
-    { label: 'Instagram', href: '' },
     { label: 'Facebook', href: '' },
+    { label: 'X / Twitter', href: '' },
+    { label: 'TikTok', href: '' },
+    { label: 'Instagram', href: '' },
+    { label: 'LinkedIn', href: '' },
     { label: 'GitHub', href: '' },
   ],
 }
