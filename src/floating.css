@@ -146,3 +146,8 @@
 
 /* Room for the waving images above their titles */
 .card__media.gl-on + .card__meta { margin-top: 26px; }
+
+/* Top bar lettering */
+.topbar { font-family: 'Poppins', var(--sans); font-weight: 500; font-size: 14.5px; letter-spacing: .01em; }
+@media (max-width: 560px) { .topbar { font-size: 12px; letter-spacing: 0; } }
+@media (max-width: 400px) { .topbar { font-size: 11px; } .topbar__info { gap: 10px; } }
