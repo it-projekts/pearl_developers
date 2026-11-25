@@ -1,6 +1,6 @@
 // WebGL "wave" gallery for project images (unseen.co style).
 // One fixed, see-through canvas draws every registered project image as a
-// soft 3D sheet that sits exactly over its card. While you scroll the sheets
+// soft 3D sheet over its card that waves like a flag in the wind. While you scroll the sheets
 // bend and ripple with the scroll speed, tilt back as they leave the screen,
 // and the cards coming up pass in front of the ones going away.
 // The real <img> stays in the page (for layout, SEO and screen readers) but
@@ -16,7 +16,10 @@ const vertex = /* glsl */ `
   uniform vec2 uSize;
   uniform vec2 uView;
   varying vec2 vUv;
+  uniform float uWind;
+  uniform float uPhase;
   varying float vDepth;
+  varying float vFold;
   const float PI = 3.141592653589793;
   void main() {
     vUv = uv;
@@ -29,7 +32,21 @@ const vertex = /* glsl */ `
     w.z += abs(uVel) * sin(uv.y * PI) * sin(uv.x * PI) * -uSize.y * 0.18;
     // and a ripple runs across it
     w.z += uVel * sin(uv.x * PI * 2.0 + uv.y * 3.0 + uTime * 6.0) * uSize.y * 0.05;
+    // flag in the wind: waves travel from the fixed left edge to the free right edge
+    float loose = mix(0.22, 1.0, smoothstep(0.0, 1.0, uv.x));
+    float gust = uWind * (0.85 + 0.25 * sin(uTime * 0.8 + uPhase));
+    float ph = uv.x * 7.5 + uv.y * 1.3 - uTime * 3.4 + uPhase;
+    float flag = sin(ph) * 0.75 + sin(ph * 1.7 + 1.1) * 0.25;
+    w.z += flag * loose * gust * uSize.y * 0.12;
+    w.y += flag * loose * gust * uSize.y * 0.034;
+    w.x += sin(ph * 0.6) * loose * gust * uSize.x * 0.008;
+    vFold = (cos(ph) * 0.75 + cos(ph * 1.7 + 1.1) * 0.42) * loose * gust;
     vDepth = w.z;
+    // perspective would drag far sheets toward mid-screen (over other cards' titles): keep them on their card
+    vec4 c = modelMatrix * vec4(0.0, 0.0, 0.0, 1.0);
+    float cy = clamp(c.y / (uView.y * 0.5), -1.6, 1.6);
+    float cz = c.z - cy * cy * uView.y * 0.12;
+    w.xy *= (1600.0 - cz) / 1600.0; // 1600 = camera distance
     gl_Position = projectionMatrix * viewMatrix * w;
   }
 `
@@ -43,11 +60,13 @@ const fragment = /* glsl */ `
   uniform float uShade;
   varying vec2 vUv;
   varying float vDepth;
+  varying float vFold;
   float rbox(vec2 p, vec2 b, float r) { vec2 q = abs(p) - b + r; return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r; }
   void main() {
     vec2 px = (vUv - 0.5) * uSize;
     float d = rbox(px, uSize * 0.5, uRadius);
-    if (d > 0.5) discard;
+    float edge = 1.0 - smoothstep(-0.75, 0.75, d);
+    if (edge < 0.02) discard;
     float box = uSize.x / uSize.y;
     vec2 uv = (vUv - 0.5) / (1.0 + uHover * 0.06);
     // blurred "cover" copy fills the card
@@ -59,7 +78,9 @@ const fragment = /* glsl */ `
     if (iuv.x >= 0.0 && iuv.x <= 1.0 && iuv.y >= 0.0 && iuv.y <= 1.0) col = texture2D(uTex, iuv).rgb;
     // sheets further away get a little darker
     col *= 1.0 - clamp(uShade - vDepth * 0.0006, 0.0, 0.45);
-    gl_FragColor = vec4(col, 1.0);
+    // light on the folds
+    col *= 1.0 + vFold * 0.17;
+    gl_FragColor = vec4(col, edge);
   }
 `
 
@@ -97,6 +118,8 @@ export function WaveGallery({ children }) {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(40, 1, 10, 6000)
     const geo = new THREE.PlaneGeometry(1, 1, 40, 40)
+    let seq = 0
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)') // still folds, no constant motion
     const loader = new THREE.TextureLoader()
     let W = 0, H = 0
 
@@ -117,9 +140,11 @@ export function WaveGallery({ children }) {
       const mat = new THREE.ShaderMaterial({
         vertexShader: vertex,
         fragmentShader: fragment,
+        transparent: true,
+        premultipliedAlpha: false,
         uniforms: {
           uTex: { value: null }, uVel: { value: 0 }, uTime: { value: 0 }, uSize: { value: new THREE.Vector2(1, 1) },
-          uView: { value: new THREE.Vector2(1, 1) }, uAspect: { value: 1 }, uHover: { value: 0 }, uRadius: { value: RADIUS }, uShade: { value: 0 },
+          uView: { value: new THREE.Vector2(1, 1) }, uAspect: { value: 1 }, uHover: { value: 0 }, uRadius: { value: RADIUS }, uShade: { value: 0 }, uWind: { value: 0 }, uPhase: { value: (seq++) * 1.7 },
         },
       })
       const mesh = new THREE.Mesh(geo, mat)
@@ -184,14 +209,15 @@ export function WaveGallery({ children }) {
         const cy = r.top + r.height / 2
         const p = Math.max(-1.4, Math.min(1.4, (H / 2 - cy) / (H / 2))) // +1 top edge, -1 bottom edge
         const away = Math.max(0, Math.abs(p) - 0.15)
-        m.scale.set(r.width, r.height, 1)
+        m.scale.set(r.width * 0.97, r.height * 0.9, 1)
         m.position.set(r.left + r.width / 2 - W / 2, H / 2 - cy, -away * away * 260)
-        m.rotation.x = -Math.sign(p) * away * 0.62 * (1 - it.h * 0.6)
+        m.rotation.x = -Math.sign(p) * away * 0.5 * (1 - it.h * 0.6)
         m.rotation.z = vel * 0.035 * (r.left + r.width / 2 < W / 2 ? 1 : -1)
         m.renderOrder = Math.round(cy)
         const u = m.material.uniforms
         u.uVel.value = vel * (1 - it.h * 0.5)
-        u.uTime.value = time
+        u.uTime.value = calm.matches ? 0 : time
+        u.uWind.value = 1 - it.h * 0.55 // hovering settles the flag so it can be read
         u.uHover.value = it.h
         u.uSize.value.set(r.width, r.height)
         u.uView.value.set(W, H)

@@ -235,7 +235,7 @@ export const projects = [
   { title: 'Ride & Route', image: '/projects/rnr.webp', category: 'Mobile', kind: 'Taxi park & fleet app', year: '2025', palette: ['#f6dccf', '#f3efe7', '#e5b9a8'], shape: 'wave' },
   { title: 'Ask Pearl', image: '/projects/chatbot.webp', category: 'AI', kind: 'Customer support chatbot', year: '2026', palette: ['#e4d9f7', '#fbe7ef', '#c2b0ee'], shape: 'orb' },
   { title: 'Market Bloom', image: '/projects/e-commerce.webp', category: 'Web', kind: 'Multi‑vendor e‑commerce', year: '2024', palette: ['#f7e6cf', '#f6dfe3', '#ecc49b'], shape: 'arch' },
-  { title: 'Sentinel Watch', category: 'IoT', kind: 'Intrusion & smoke detection', year: '2025', palette: ['#d6dbe8', '#e9e4dc', '#9fb0cf'], shape: 'radar' },
+  { title: 'Sentinel Watch', image: '/projects/sentinel.svg', category: 'IoT', kind: 'Intrusion & smoke detection', year: '2025', palette: ['#d6dbe8', '#e9e4dc', '#9fb0cf'], shape: 'radar' },
   { title: 'Ballot Clear', image: '/projects/e-voting.webp', category: 'Systems', kind: 'Secure digital voting', year: '2024', palette: ['#e1ecd9', '#f3eee4', '#b7d1a8'], shape: 'grid' },
   { title: 'Feast Express', image: '/projects/food-ordering.webp', category: 'Mobile', kind: 'Food ordering & delivery', year: '2024', palette: ['#fbd9cf', '#fbefe1', '#f0a993'], shape: 'wave' },
   { title: 'Vision Count', image: '/projects/stock.webp', category: 'AI', kind: 'Computer‑vision stock counting', year: '2026', palette: ['#d8e3f5', '#efe7f5', '#a7bce6'], shape: 'orb' },

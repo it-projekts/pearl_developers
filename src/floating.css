@@ -143,3 +143,6 @@
 }
 @media (max-width: 400px) { .topbar { font-size: 12px; } .topbar a { gap: 5px; } .topbar svg { width: 14px; } }
 .topbar__social span { display: inline-flex; }
+
+/* Room for the waving images above their titles */
+.card__media.gl-on + .card__meta { margin-top: 26px; }
