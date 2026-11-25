@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { Arrow, Reveal, SplitWords, ease } from './ui.jsx'
 import ProjectArt from './ProjectArt.jsx'
 import { LineIcon } from './MenuIcons.jsx'
@@ -24,47 +24,28 @@ export function Marquee({ items }) {
   )
 }
 
-/* ─── Services index (numbered rows with floating preview) ─── */
+/* ─── Services index (a row drops its image open on hover or keyboard focus) ─── */
 export function ServicesIndex() {
-  const [hovered, setHovered] = useState(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const sx = useSpring(x, { stiffness: 200, damping: 25 })
-  const sy = useSpring(y, { stiffness: 200, damping: 25 })
+  const [open, setOpen] = useState(null)
   return (
-    <div className="svc-list" onMouseMove={(e) => { x.set(e.clientX + 30); y.set(e.clientY - 110) }} onMouseLeave={() => setHovered(null)}>
+    <div className="svc-list" onMouseLeave={() => setOpen(null)}>
       {services.map((s, i) => (
         <Reveal key={s.slug} delay={i * 0.04} y={30}>
-          <Link to={`/services/${s.slug}`} className="svc-row" onMouseEnter={() => setHovered(i)}>
+          <Link
+            to={`/services/${s.slug}`}
+            className={`svc-row${open === i ? ' is-open' : ''}`}
+            onMouseEnter={() => setOpen(i)}
+            onFocus={() => setOpen(i)}
+            onBlur={() => setOpen((o) => (o === i ? null : o))}
+          >
             <span className="svc-row__num">({String(i + 1).padStart(2, '0')})</span>
             <span className="svc-row__title">{s.title}</span>
             <span className="svc-row__desc">{s.short}</span>
             <span className="svc-row__arrow"><Arrow /></span>
+            <span className="svc-row__drop"><span><img src={`/services/${s.image || `${s.slug}.svg`}`} alt="" loading="lazy" /></span></span>
           </Link>
         </Reveal>
       ))}
-      <AnimatePresence>
-        {hovered !== null && (
-          <motion.div
-            className="svc-preview"
-            style={{ x: sx, y: sy, background: `linear-gradient(135deg, ${services[hovered].hue[0]}, ${services[hovered].hue[1]})` }}
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.7 }}
-            transition={{ duration: 0.35, ease }}
-          >
-            <div style={{ position: 'absolute', inset: 0, padding: 22, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {services[hovered].items.slice(0, 4).map((t) => (
-                  <span key={t} style={{ fontSize: 12, padding: '5px 10px', borderRadius: 99, background: 'rgba(255,255,255,.7)' }}>{t}</span>
-                ))}
-              </div>
-              <span className="italic" style={{ fontSize: 34, lineHeight: 1 }}>{services[hovered].title}</span>
-            </div>
-            <div style={{ position: 'absolute', width: 120, height: 120, right: -30, top: -30, borderRadius: '50%', background: 'radial-gradient(circle at 32% 28%, #fff 0 10%, #f7e7ef 26%, #d8d7f3 52%, #9d8bc4 100%)' }} />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

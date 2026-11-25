@@ -333,11 +333,6 @@ input, textarea, select { font: inherit; color: inherit; }
   transition: background .3s, color .3s, transform .5s var(--ease);
 }
 .svc-row:hover .svc-row__arrow { background: var(--ink); color: #fff; transform: rotate(-45deg); }
-.svc-preview {
-  position: fixed; top: 0; left: 0; width: 300px; height: 220px; border-radius: 22px; pointer-events: none; z-index: 50;
-  overflow: hidden; box-shadow: 0 30px 60px -30px rgba(40, 20, 40, .5);
-}
-@media (hover: none) { .svc-preview { display: none; } }
 
 /* ───────────── Projects ───────────── */
 .work-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; margin-bottom: clamp(40px, 6vw, 70px); }

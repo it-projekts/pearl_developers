@@ -125,8 +125,7 @@ export default function Home() {
       <section className="section section--paper" id="services">
         <div className="container">
           <div className="section-head">
-            <h2 className="h-1">What we <span className="italic">do</span></h2>
-            <p className="lead">From a first sketch to a system thousands of people rely on daily — strategy, design, engineering and support under one roof.</p>
+            <h2 className="h-1 svc-head">What we <span className="italic">do</span></h2>
           </div>
           <ServicesIndex />
         </div>

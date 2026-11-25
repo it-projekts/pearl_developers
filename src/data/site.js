@@ -29,6 +29,8 @@ export const company = {
 export const liveSocials = company.socials.filter((s) => s.href && s.href !== '#')
 
 // ── Services ────────────────────────────────────────────────
+// Hover images are public/services/<slug>.svg. To use a photo, put it in public/services
+// and add  image: 'photo.jpg'  to that service.
 export const services = [
   {
     slug: 'ai-automation',

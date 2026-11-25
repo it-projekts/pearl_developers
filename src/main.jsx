@@ -11,6 +11,7 @@ import './hero.css'
 import './floating.css'
 import './online.css'
 import './who.css'
+import './services.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
